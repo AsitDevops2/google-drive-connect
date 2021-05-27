@@ -106,6 +106,7 @@ public class GoogleApiClientConfig {
 	}
 
 	public void saveAuthorizationCode(String code) throws IOException {
+		System.err.println(code);
 		if (code != null) {
 			saveToken(code);
 
