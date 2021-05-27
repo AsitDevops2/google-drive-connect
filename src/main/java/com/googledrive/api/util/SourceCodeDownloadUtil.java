@@ -33,21 +33,29 @@ public class SourceCodeDownloadUtil {
 		}
 		if (null != fileUrlObj) {
 			try (BufferedInputStream inStream = new BufferedInputStream(fileUrlObj.openStream())) {
-				try (FileOutputStream outStream = new FileOutputStream(fileName)) {
-
-					byte data[] = new byte[1024];
-					int count;
-					while ((count = inStream.read(data, 0, 1024)) != -1) {
-						outStream.write(data, 0, count);
-					}
-				} catch (IOException exception) {
-					logger.error("Error: ", exception);
-				}
+				fileOutputStream(fileName, inStream);
 
 			} catch (IOException exception) {
 				logger.error("Error: ", exception);
 			}
 
+		}
+	}
+
+	/**
+	 * @param fileName
+	 * @param inStream
+	 */
+	private void fileOutputStream(String fileName, BufferedInputStream inStream) {
+		try (FileOutputStream outStream = new FileOutputStream(fileName)) {
+
+			byte[] data = new byte[1024];
+			int count;
+			while ((count = inStream.read(data, 0, 1024)) != -1) {
+				outStream.write(data, 0, count);
+			}
+		} catch (IOException exception) {
+			logger.error("Error: ", exception);
 		}
 	}
 }
