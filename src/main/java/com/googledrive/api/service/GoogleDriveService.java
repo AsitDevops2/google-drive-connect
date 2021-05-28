@@ -142,6 +142,6 @@ public class GoogleDriveService {
 	
 	public void delete(@Nonnull String fileId) throws IOException, GeneralSecurityException
 	{
-		 config.googleDrive().files().delete(fileId);
+		 config.googleDrive().files().delete(fileId).execute();
 	}
 }
