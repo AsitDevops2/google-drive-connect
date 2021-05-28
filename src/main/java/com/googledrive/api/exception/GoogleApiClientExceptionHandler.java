@@ -12,10 +12,11 @@ import com.google.api.client.googleapis.json.GoogleJsonError;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.googledrive.api.controller.DriveCommentsController;
 import com.googledrive.api.controller.DriveFilesController;
+import com.googledrive.api.controller.DriveRepliesController;
 import com.googledrive.api.controller.GoogleDriveConnectController;
 
 @RestControllerAdvice(assignableTypes = { GoogleDriveConnectController.class, DriveCommentsController.class,
-		DriveFilesController.class })
+		DriveFilesController.class ,DriveRepliesController.class})
 public class GoogleApiClientExceptionHandler {
 
 	/**
