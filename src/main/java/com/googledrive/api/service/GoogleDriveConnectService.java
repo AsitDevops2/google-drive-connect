@@ -20,7 +20,6 @@ import com.google.api.services.drive.Drive.Files.Export;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.googledrive.api.config.GoogleApiClientConfig;
-import com.googledrive.api.util.SourceCodeDownloadUtil;
 
 /**
  * Service class for all api's
@@ -32,9 +31,6 @@ public class GoogleDriveConnectService {
 	GoogleApiClientConfig config;
 
 	Logger logger = LoggerFactory.getLogger(GoogleDriveConnectService.class);
-
-	@Autowired
-	SourceCodeDownloadUtil util;
 
 	public String doGoogleSignIn() {
 		return config.doGoogleSignIn();
@@ -107,16 +103,6 @@ public class GoogleDriveConnectService {
 	}
 
 	/**
-	 * Method to download source code
-	 * 
-	 * @param response
-	 * 
-	 */
-	public void downloadSource() {
-		util.downloadSourceCode();
-	}
-
-	/**
 	 * Method to upload file to google drive
 	 * 
 	 * @return
@@ -130,7 +116,7 @@ public class GoogleDriveConnectService {
 				File fileMetadata = new File();
 				fileMetadata.setParents(Collections.singletonList(folderId));
 				fileMetadata.setName(file.getOriginalFilename());
-				 config.googleDrive().files().create(fileMetadata,
+				config.googleDrive().files().create(fileMetadata,
 						new InputStreamContent(file.getContentType(), new ByteArrayInputStream(file.getBytes())))
 						.setFields("id").execute();
 			}
@@ -139,9 +125,8 @@ public class GoogleDriveConnectService {
 		}
 
 	}
-	
-	public void delete(@Nonnull String fileId) throws IOException, GeneralSecurityException
-	{
-		 config.googleDrive().files().delete(fileId).execute();
+
+	public void delete(@Nonnull String fileId) throws IOException, GeneralSecurityException {
+		config.googleDrive().files().delete(fileId).execute();
 	}
 }
