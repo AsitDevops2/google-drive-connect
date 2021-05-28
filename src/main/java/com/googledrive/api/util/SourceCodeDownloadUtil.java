@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * @author swathi.kompella
+ * Class for downloading source code util
  *
  */
 @Component

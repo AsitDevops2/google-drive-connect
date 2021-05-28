@@ -23,7 +23,7 @@ import com.googledrive.api.config.GoogleApiClientConfig;
 import com.googledrive.api.util.SourceCodeDownloadUtil;
 
 /**
- * @author swathi.kompella
+ * Service class for all api's
  *
  */
 @Service
@@ -138,5 +138,10 @@ public class GoogleDriveService {
 			logger.error("Error: ", e);
 		}
 
+	}
+	
+	public void delete(@Nonnull String fileId) throws IOException, GeneralSecurityException
+	{
+		 config.googleDrive().files().delete(fileId);
 	}
 }
