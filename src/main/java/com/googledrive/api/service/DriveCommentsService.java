@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.google.api.services.drive.model.Comment;
 import com.google.api.services.drive.model.CommentList;
 import com.googledrive.api.config.GoogleApiClientConfig;
+import com.googledrive.api.util.SourceCodeDownloadUtil;
 
 /**
  * Service class for all api's
@@ -24,9 +25,22 @@ public class DriveCommentsService {
 
 	Logger logger = LoggerFactory.getLogger(DriveCommentsService.class);
 
+	public String doGoogleSignIn() {
+		return config.doGoogleSignIn();
+	}
+
+	public void saveAuthorizationCode(String code) {
+		try {
+			config.saveAuthorizationCode(code);
+		} catch (IOException ioException) {
+			logger.error("Error: ", ioException);
+
+		}
+	}
 
 	/**
 	 * Method to get comments
+	 * 
 	 * @param fileid
 	 * @return
 	 * @throws IOException
@@ -39,6 +53,7 @@ public class DriveCommentsService {
 
 	/**
 	 * Method to get comments by file id and comment id
+	 * 
 	 * @param fileid
 	 * @param commentId
 	 * @return

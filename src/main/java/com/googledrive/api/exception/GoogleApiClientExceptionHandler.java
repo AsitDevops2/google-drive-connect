@@ -4,15 +4,17 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
 import com.google.api.client.googleapis.json.GoogleJsonError;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.googledrive.api.controller.GoogleDriveController;
+import com.googledrive.api.controller.DriveCommentsController;
 
-@RestControllerAdvice(assignableTypes = { GoogleDriveController.class })
+@RestControllerAdvice(assignableTypes = { DriveCommentsController.class })
 public class GoogleApiClientExceptionHandler {
 
   /**

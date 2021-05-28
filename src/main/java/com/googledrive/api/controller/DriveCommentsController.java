@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +26,21 @@ public class DriveCommentsController {
 
 	@Autowired
 	DriveCommentsService service;
+	
+	@GetMapping(value = { "/googlesignin" })
+	public void doGoogleSignIn(HttpServletResponse response) throws IOException {
 
+		String signinURL = service.doGoogleSignIn();
+		response.sendRedirect(signinURL);
+
+	}
+
+	@GetMapping(value = { "/oauth" })
+	public void saveAuthorizationCode(HttpServletRequest request) {
+		String code = request.getParameter("code");
+		service.saveAuthorizationCode(code);
+
+	}
 
 	@GetMapping(value = { "/listcomments/{fileId}" })
 	public ResponseEntity<List<Comment>> listComments(@PathVariable String fileId) throws IOException, GeneralSecurityException {
