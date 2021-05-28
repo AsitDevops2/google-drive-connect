@@ -50,9 +50,16 @@ public class DriveCommentsService {
 		return config.googleDrive().comments().get(fileid, commentId).setFields("*").execute();
 	}
 
-	public Comment createComment(String fileid, String content) throws IOException, GeneralSecurityException {
+	/**
+	 * Method to create comments
+	 * @param fileid
+	 * @return
+	 * @throws IOException
+	 * @throws GeneralSecurityException
+	 */
+	public Comment createComment(String fileid) throws IOException, GeneralSecurityException {
 		Comment comment = new Comment();
-		comment.setContent(content);
+		comment.setContent("New comment");
 		return config.googleDrive().comments().create(fileid, comment).setFields("*").execute();
 	}
 
