@@ -51,23 +51,6 @@ public class DriveRepliesService {
 				.execute();
 	}
 
-	/**
-	 * Method to create reply
-	 * 
-	 * @param fileId
-	 * @param commentId
-	 * @param replyId
-	 * @return
-	 * @throws IOException
-	 * @throws GeneralSecurityException
-	 */
-	public Reply createReply(String fileId, String commentId) throws IOException, GeneralSecurityException {
-		Reply content = new Reply();
-		content.setAction("Reopen");
-		content.setContent("This is a new reply");
-		return config.googleDrive().replies().create(fileId, commentId, content).setFields("*").execute();
-
-	}
 	
 	/**
 	 * Method to delete reply
