@@ -20,35 +20,16 @@ import com.google.api.services.drive.Drive.Files.Export;
 import com.google.api.services.drive.model.File;
 import com.google.api.services.drive.model.FileList;
 import com.googledrive.api.config.GoogleApiClientConfig;
-import com.googledrive.api.util.SourceCodeDownloadUtil;
 
-/**
- * Service class for all api's
- *
- */
 @Service
-public class GoogleDriveService {
+public class DriveFilesService {
+
 	@Autowired
 	GoogleApiClientConfig config;
 
-	Logger logger = LoggerFactory.getLogger(GoogleDriveService.class);
+	Logger logger = LoggerFactory.getLogger(DriveFilesService.class);
 
-	@Autowired
-	SourceCodeDownloadUtil util;
-
-	public String doGoogleSignIn() {
-		return config.doGoogleSignIn();
-	}
-
-	public void saveAuthorizationCode(String code) {
-		try {
-			config.saveAuthorizationCode(code);
-		} catch (IOException ioException) {
-			logger.error("Error: ", ioException);
-
-		}
-
-	}
+	
 
 	/**
 	 * Method to get list of files from google drive
@@ -106,15 +87,6 @@ public class GoogleDriveService {
 		return config.googleDrive().files().get(id).execute();
 	}
 
-	/**
-	 * Method to download source code
-	 * 
-	 * @param response
-	 * 
-	 */
-	public void downloadSource() {
-		util.downloadSourceCode();
-	}
 
 	/**
 	 * Method to upload file to google drive

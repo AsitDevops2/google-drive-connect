@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,34 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.api.services.drive.model.File;
-import com.googledrive.api.service.GoogleDriveService;
+import com.googledrive.api.service.DriveFilesService;
 
-/**
- * Google driver controller class
- *
- */
-
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-public class GoogleDriveController {
+public class DriveFilesController {
 
 	@Autowired
-	GoogleDriveService service;
-
-	@GetMapping(value = { "/googlesignin" })
-	public void doGoogleSignIn(HttpServletResponse response) throws IOException {
-
-		String signinURL = service.doGoogleSignIn();
-		response.sendRedirect(signinURL);
-
-	}
-
-	@GetMapping(value = { "/oauth" })
-	public void saveAuthorizationCode(HttpServletRequest request) {
-		String code = request.getParameter("code");
-		service.saveAuthorizationCode(code);
-
-	}
+	DriveFilesService service;
 
 	@GetMapping("/Files")
 	public ResponseEntity<List<File>> files() throws IOException, GeneralSecurityException {
@@ -64,12 +41,6 @@ public class GoogleDriveController {
 	public void download(@PathVariable String id, HttpServletResponse response)
 			throws IOException, GeneralSecurityException {
 		service.downloadFile(id, response.getOutputStream());
-	}
-
-	@GetMapping("/downloadSource")
-	public ResponseEntity<String> downloadSource() {
-		service.downloadSource();
-		return ResponseEntity.ok("Source Code Downloaded Successfully....Please check your drive");
 	}
 
 	@PostMapping(value = "/upload", consumes = { MediaType.MULTIPART_FORM_DATA_VALUE }, produces = {
