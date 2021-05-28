@@ -53,11 +53,5 @@ public class DriveCommentsController {
 		return ResponseEntity.ok(service.commentById(fileId, commentId));
 
 	}
-	
-	@GetMapping(value = { "/createComment/{fileId}/{commentId}" })
-	public ResponseEntity<Comment> createComment(@PathVariable String fileId,@PathVariable String commentId) throws IOException, GeneralSecurityException {
-		return ResponseEntity.ok(service.createComment(fileId, commentId));
-
-	}
 
 }

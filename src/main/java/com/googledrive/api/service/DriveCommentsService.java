@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.google.api.services.drive.model.Comment;
 import com.google.api.services.drive.model.CommentList;
 import com.googledrive.api.config.GoogleApiClientConfig;
-import com.googledrive.api.util.SourceCodeDownloadUtil;
 
 /**
  * Service class for all api's
@@ -62,12 +61,6 @@ public class DriveCommentsService {
 	 */
 	public Comment commentById(String fileid, String commentId) throws IOException, GeneralSecurityException {
 		return config.googleDrive().comments().get(fileid, commentId).setFields("*").execute();
-	}
-
-	public Comment createComment(String fileid, String content) throws IOException, GeneralSecurityException {
-		Comment comment = new Comment();
-		comment.setContent(content);
-		return config.googleDrive().comments().create(fileid, comment).setFields("*").execute();
 	}
 
 }
