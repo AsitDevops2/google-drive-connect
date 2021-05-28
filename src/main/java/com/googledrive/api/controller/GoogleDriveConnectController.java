@@ -18,7 +18,6 @@ import com.googledrive.api.service.GoogleDriveConnectService;
  *
  */
 
-@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class GoogleDriveConnectController {
 
@@ -41,10 +40,6 @@ public class GoogleDriveConnectController {
 
 	}
 
-	@GetMapping("/downloadSource")
-	public ResponseEntity<String> downloadSource() {
-		service.downloadSource();
-		return ResponseEntity.ok("Source Code Downloaded Successfully....Please check your drive");
-	}
+
 
 }
