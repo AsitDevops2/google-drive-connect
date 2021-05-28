@@ -41,10 +41,4 @@ public class GoogleDriveConnectController {
 
 	}
 
-	@GetMapping("/downloadSource")
-	public ResponseEntity<String> downloadSource() {
-		service.downloadSource();
-		return ResponseEntity.ok("Source Code Downloaded Successfully....Please check your drive");
-	}
-
 }

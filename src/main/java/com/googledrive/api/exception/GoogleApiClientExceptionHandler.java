@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.google.api.client.googleapis.json.GoogleJsonError;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.googledrive.api.controller.DriveRepliesController;
 import com.googledrive.api.controller.GoogleDriveConnectController;
 
-@RestControllerAdvice(assignableTypes = { GoogleDriveConnectController.class, DriveRepliesController.class })
+@RestControllerAdvice(assignableTypes = { GoogleDriveConnectController.class})
 public class GoogleApiClientExceptionHandler {
 
 	/**
