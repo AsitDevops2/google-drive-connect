@@ -32,7 +32,7 @@ public class GoogleDriveConnectService {
 		try {
 			config.saveAuthorizationCode(code);
 		} catch (IOException ioException) {
-			logger.error("Error: ", ioException);
+			logger.error("Exception while saving authorization code: ", ioException);
 
 		}
 

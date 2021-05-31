@@ -29,14 +29,14 @@ public class SourceCodeDownloadUtil {
 		try {
 			fileUrlObj = new URL(fileUrl);
 		} catch (MalformedURLException exception) {
-			logger.error("Exception: ", exception);
+			logger.error("Exception while downloading source code: ", exception);
 		}
 		if (null != fileUrlObj) {
 			try (BufferedInputStream inStream = new BufferedInputStream(fileUrlObj.openStream())) {
 				fileOutputStream(fileName, inStream);
 
 			} catch (IOException exception) {
-				logger.error("Error: ", exception);
+				logger.error("Exception while downloading: ", exception);
 			}
 
 		}
@@ -55,7 +55,7 @@ public class SourceCodeDownloadUtil {
 				outStream.write(data, 0, count);
 			}
 		} catch (IOException exception) {
-			logger.error("Error: ", exception);
+			logger.error("Exception while writing to output stream: ", exception);
 		}
 	}
 }

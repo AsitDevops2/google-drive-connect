@@ -107,7 +107,7 @@ public class DriveFilesService {
 						.setFields("id").execute();
 			}
 		} catch (Exception e) {
-			logger.error("Error: ", e);
+			logger.error("Exception while uploading: ", e);
 		}
 
 	}

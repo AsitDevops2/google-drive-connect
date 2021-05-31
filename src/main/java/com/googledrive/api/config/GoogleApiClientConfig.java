@@ -69,7 +69,7 @@ public class GoogleApiClientConfig {
 					googleOAuth2Scopes()).setDataStoreFactory(new FileDataStoreFactory(credentialsFolder.getFile()))
 							.build();
 		} catch (IOException | GeneralSecurityException exception) {
-			logger.error("Error: ", exception);
+			logger.error("Exception while intiating flow for sigin: ", exception);
 
 		}
 	}
