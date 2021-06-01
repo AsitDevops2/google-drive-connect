@@ -6,10 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.googledrive.api.service.GoogleDriveConnectService;
 
@@ -18,8 +16,7 @@ import com.googledrive.api.service.GoogleDriveConnectService;
  *
  */
 
-@CrossOrigin(origins = "*", maxAge = 3600)
-@RestController
+@Controller
 public class GoogleDriveConnectController {
 
 	@Autowired
@@ -34,10 +31,10 @@ public class GoogleDriveConnectController {
 	}
 
 	@GetMapping(value = { "/oauth" })
-	public ResponseEntity<String> saveAuthorizationCode(HttpServletRequest request) {
+	public String saveAuthorizationCode(HttpServletRequest request) {
 		String code = request.getParameter("code");
 		service.saveAuthorizationCode(code);
-		return ResponseEntity.ok("Authenticated Successfully.");
+		return "Authenticate.html";
 
 	}
 
