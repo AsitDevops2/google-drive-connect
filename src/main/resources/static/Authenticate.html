@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>OAuth</title>
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<form>
+<script type="text/javascript">
+function closeWindow(cmd) {
+if (cmd == 'quit') 
+{
+  open(location, '_self').close();
+}
+return false;
+}
+	</script>
+	<form>
 	<h1 class="display-4 text-center text-white">Welcome!!!</h1>
 	<div class="text-center text-white">You are logged in via Google
 		OAuth</div>
 
 	<input class="favorite styled"
        type="button"
-       value="closewindow" onclick="window.close()">
+       value="closewindow" onClick="return closeWindow('quit'); ">
 </form>
 </body>
 
