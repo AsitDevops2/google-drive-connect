@@ -37,7 +37,7 @@ public class GoogleDriveConnectController {
 	public ResponseEntity<String> saveAuthorizationCode(HttpServletRequest request) {
 		String code = request.getParameter("code");
 		service.saveAuthorizationCode(code);
-		return ResponseEntity.ok("Authenticated Successfully.");
+		return ResponseEntity.ok("Authenticated Successfully.Please close the window and proceed with source code download.");
 
 	}
 
